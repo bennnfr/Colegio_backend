@@ -9,16 +9,13 @@ const app = express();
 //cors
 app.use(cors());
 
+//body
+app.use(express.json());
+
 //base de datos
 dbConnection();
 
-//rutas
-app.get('/', (req, res) => {
-    res.json({
-        ok: true,
-        msg: 'ey'
-    })
-})
+app.use('/api/alumnos', require('./routes/alumnos'));
 
 
 app.listen(process.env.PORT, () => {
