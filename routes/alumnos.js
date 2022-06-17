@@ -11,6 +11,7 @@ router.post('/', [
     check('Genero', 'El genero es obligatorio').not().isEmpty(),
     check('Fnacimiento', 'La fecha de nacimiento es obligatoria').not().isEmpty(),
 ], postAlumno);
+//ojo
 router.get('/:id', getAlumno);
 router.put('/:id', putAlumno);
 router.delete('/:id', delAlumno);
