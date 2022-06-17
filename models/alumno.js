@@ -1,10 +1,10 @@
 const { Schema, model } = require('mongoose');
 
 const AlumnoSchema = Schema({
-    Id: {
-        type: String,
-        required: true
-    },
+    /*  Id: {
+          type: String,
+          required: true
+      }, */
     Nombre: {
         type: String,
         required: true
