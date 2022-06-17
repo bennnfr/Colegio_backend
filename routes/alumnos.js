@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { getAlumnos, postAlumno, putAlumno, delAlumno } = require('../controllers/alumnos');
+const { getAlumnos, postAlumno, putAlumno, delAlumno, getAlumno } = require('../controllers/alumnos');
 const { check } = require('express-validator')
 const router = Router();
 
@@ -11,7 +11,7 @@ router.post('/', [
     check('Genero', 'El genero es obligatorio').not().isEmpty(),
     check('Fnacimiento', 'La fecha de nacimiento es obligatoria').not().isEmpty(),
 ], postAlumno);
-
+router.get('/:id', getAlumno);
 router.put('/:id', putAlumno);
 router.delete('/:id', delAlumno);
 

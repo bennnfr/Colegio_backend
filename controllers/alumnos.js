@@ -11,6 +11,13 @@ const getAlumnos = async(req, res) => {
     })
 }
 
+const getAlumno = async(req, res) => {
+    const alumno = await Alumno.findById(req.params.id);
+    res.json({
+        alumno
+    })
+}
+
 const postAlumno = async(req, res) => {
 
     // const { Id, Nombre, Apellidos, Genero, Fnacimiento } = req.body
@@ -75,5 +82,6 @@ module.exports = {
     getAlumnos,
     postAlumno,
     putAlumno,
-    delAlumno
+    delAlumno,
+    getAlumno
 }
