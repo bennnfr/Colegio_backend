@@ -14,5 +14,5 @@ router.post('/', [
 router.get('/:id', getProfesor);
 router.put('/:id', putProfesor);
 router.delete('/:id', delProfesor);
-
+//
 module.exports = router
