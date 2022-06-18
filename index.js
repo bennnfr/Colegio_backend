@@ -16,6 +16,7 @@ app.use(express.json());
 dbConnection();
 
 app.use('/api/alumnos', require('./routes/alumnos'));
+app.use('/api/profesores', require('./routes/profesores'));
 
 const PORT = process.env.PORT || 3000
 app.listen(PORT, () => {
