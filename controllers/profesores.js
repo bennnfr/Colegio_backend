@@ -11,6 +11,13 @@ const getProfesores = async(req, res) => {
     })
 }
 
+const getProfesor = async(req, res) => {
+    const profesor = await Profesor.findById(req.params.id);
+    res.json({
+        profesor
+    })
+}
+
 const postProfesor = async(req, res) => {
 
     // const { Id, Nombre, Apellidos, Genero, Fnacimiento } = req.body
@@ -75,5 +82,6 @@ module.exports = {
     getProfesores,
     postProfesor,
     putProfesor,
-    delProfesor
+    delProfesor,
+    getProfesor
 }
