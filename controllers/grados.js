@@ -8,7 +8,13 @@ const getGrados = async(req, res) => {
     const grados = await Grado.find();
     for (const prop in grados) {
         let prof = await Profesor.findById(grados[prop].ProfesorId);
-        grados[prop].NombreProfesor = prof.Nombre
+        console.log(prof)
+        if (prof === null) {
+            grados[prop].NombreProfesor = 'Profesor no asignado'
+        } else {
+            grados[prop].NombreProfesor = prof.Nombre
+        }
+
     }
 
     res.json({
