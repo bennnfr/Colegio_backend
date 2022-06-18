@@ -1,10 +1,16 @@
 const Grado = require('../models/grados')
+const Profesor = require('../models/profesor')
 const { validationResult } = require('express-validator')
 
 
 
 const getGrados = async(req, res) => {
     const grados = await Grado.find();
+    for (const prop in grados) {
+        let prof = await Profesor.findById(grados[prop].ProfesorId);
+        grados[prop].NombreProfesor = prof.Nombre
+    }
+
     res.json({
         ok: true,
         grados

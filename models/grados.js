@@ -9,6 +9,10 @@ const GradoSchema = Schema({
     ProfesorId: {
         type: String,
         required: true
+    },
+    NombreProfesor: {
+        type: String,
+        required: true
     }
 })
 
