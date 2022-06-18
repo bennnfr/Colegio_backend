@@ -12,7 +12,7 @@ const GradoSchema = Schema({
     },
     NombreProfesor: {
         type: String,
-        required: true
+        required: false
     }
 })
 
