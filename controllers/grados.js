@@ -25,7 +25,6 @@ const getGrados = async(req, res) => {
 
 const postGrado = async(req, res) => {
 
-    // const { Id, Nombre, Apellidos, Genero, Fnacimiento } = req.body
     const err = validationResult(req);
     if (!err.isEmpty()) {
         return res.status(400).json({
