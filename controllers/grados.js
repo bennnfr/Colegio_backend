@@ -3,7 +3,7 @@ const Profesor = require('../models/profesor')
 const { validationResult } = require('express-validator')
 
 
-
+//
 const getGrados = async(req, res) => {
     const grados = await Grado.find();
     for (const prop in grados) {
