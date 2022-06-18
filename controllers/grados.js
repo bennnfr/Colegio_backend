@@ -1,4 +1,4 @@
-const Grado = require('../models/profesor')
+const Grado = require('../models/grados')
 const { validationResult } = require('express-validator')
 
 
