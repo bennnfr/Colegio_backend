@@ -23,6 +23,13 @@ const getGrados = async(req, res) => {
     })
 }
 
+const getGrado = async(req, res) => {
+    const grado = await Grado.findById(req.params.id);
+    res.json({
+        grado
+    })
+}
+
 const postGrado = async(req, res) => {
 
     const err = validationResult(req);
@@ -86,5 +93,6 @@ module.exports = {
     getGrados,
     postGrado,
     putGrado,
-    delGrado
+    delGrado,
+    getGrado
 }

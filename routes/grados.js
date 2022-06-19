@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { getGrados, postGrado, putGrado, delGrado } = require('../controllers/grados');
+const { getGrados, postGrado, putGrado, delGrado, getGrado } = require('../controllers/grados');
 const { check } = require('express-validator')
 const router = Router();
 
@@ -10,7 +10,7 @@ router.post('/', [
     check('ProfesorId', 'El ProfesorId son obligatorios').not().isEmpty()
 ], postGrado);
 //ojo
-//router.get('/:id', getAlumno);
+router.get('/:id', getGrado);
 router.put('/:id', putGrado);
 router.delete('/:id', delGrado);
 

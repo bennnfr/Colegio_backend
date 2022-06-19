@@ -18,6 +18,7 @@ dbConnection();
 app.use('/api/alumnos', require('./routes/alumnos'));
 app.use('/api/profesores', require('./routes/profesores'));
 app.use('/api/grados', require('./routes/grados'));
+app.use('/api/alumnosgrados', require('./routes/alumnogrados'));
 
 const PORT = process.env.PORT || 3000
 app.listen(PORT, () => {
