@@ -57,6 +57,7 @@ const postAlumnoGrado = async(req, res) => {
     await alumnogrado.save();
     res.json({
         ok: true,
+        msg: 'Alumno grado creado exitosamente',
         alumnogrado
     })
 }
@@ -64,6 +65,7 @@ const postAlumnoGrado = async(req, res) => {
 const putAlumnoGrado = async(req, res) => {
     const id = req.params.id;
     try {
+
         if (id.toString().length !== 24) {
             return res.json({
                 ok: false,
@@ -72,8 +74,9 @@ const putAlumnoGrado = async(req, res) => {
         }
         const alumnogrado = await Alumnogrado.findById(id);
         if (!alumnogrado) {
-            return res.status(404).json({
-                mensaje: 'AlumnoGrado no encontrado'
+            return res.json({
+                ok: false,
+                msg: 'Alumno grado no encontrado',
             })
         }
 
@@ -91,10 +94,17 @@ const putAlumnoGrado = async(req, res) => {
 const delAlumnoGrado = async(req, res) => {
     const id = req.params.id;
     try {
+        if (id.toString().length !== 24) {
+            return res.json({
+                ok: false,
+                msg: 'El id no es valido',
+            })
+        }
         const alumnogrado = await Alumnogrado.findById(id);
         if (!alumnogrado) {
-            return res.status(404).json({
-                mensaje: 'Alumnogrado no encontrado'
+            return res.json({
+                ok: false,
+                msg: 'Alumno grado no encontrado',
             })
         }
 
