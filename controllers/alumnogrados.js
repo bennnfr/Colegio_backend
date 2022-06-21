@@ -8,26 +8,20 @@ const { validationResult } = require('express-validator')
 const getAlumnosGrados = async(req, res) => {
     const alumnosgrados = await Alumnogrado.find();
     for (const prop in alumnosgrados) {
-        if (!alumnosgrados[prop].GradoId === 'Id Grado no asignado') {
-            let grad = await Grado.findById(alumnosgrados[prop].GradoId);
-            if (grad === null || grad.length === 0) {
-                alumnosgrados[prop].NombreGrado = 'Grado no asignado'
-                alumnosgrados[prop].GradoId = 'Id Grado no asignado'
-            } else {
-                alumnosgrados[prop].NombreGrado = grad.Nombre
-            }
+        let grad = await Grado.findById(alumnosgrados[prop].GradoId);
+        let alu = await Alumno.findById(alumnosgrados[prop].AlumnoId);
+        if (grad === null || grad.length === 0) {
+            alumnosgrados[prop].NombreGrado = 'Grado no asignado'
+            alumnosgrados[prop].GradoId = 'Id Grado no asignado'
+        } else {
+            alumnosgrados[prop].NombreGrado = grad.Nombre
         }
-        if (!alumnosgrados[prop].AlumnoId === 'Id Alumno no asignado') {
-            let alu = await Alumno.findById(alumnosgrados[prop].AlumnoId);
-
-            if (alu === null) {
-                alumnosgrados[prop].NombreAlumno = 'Alumno no asignado'
-                alumnosgrados[prop].AlumnoId = 'Id Alumno no asignado'
-            } else {
-                alumnosgrados[prop].NombreAlumno = alu.Nombre
-            }
+        if (alu === null) {
+            alumnosgrados[prop].NombreAlumno = 'Alumno no asignado'
+            alumnosgrados[prop].AlumnoId = 'Id Alumno no asignado'
+        } else {
+            alumnosgrados[prop].NombreAlumno = alu.Nombre
         }
-
 
     }
     res.json({

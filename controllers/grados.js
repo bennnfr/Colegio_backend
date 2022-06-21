@@ -7,16 +7,13 @@ const { validationResult } = require('express-validator')
 const getGrados = async(req, res) => {
     const grados = await Grado.find();
     for (const prop in grados) {
-        if (!grados[prop].ProfesorId === 'Id profesor no asignado') {
-            let prof = await Profesor.findById(grados[prop].ProfesorId);
-            if (prof === null) {
-                grados[prop].NombreProfesor = 'Profesor no asignado'
-                grados[prop].ProfesorId = 'Id profesor no asignado'
-            } else {
-                grados[prop].NombreProfesor = prof.Nombre
-            }
+        let prof = await Profesor.findById(grados[prop].ProfesorId);
+        if (prof === null) {
+            grados[prop].NombreProfesor = 'Profesor no asignado'
+            grados[prop].ProfesorId = 'Id profesor no asignado'
+        } else {
+            grados[prop].NombreProfesor = prof.Nombre
         }
-
 
     }
 
