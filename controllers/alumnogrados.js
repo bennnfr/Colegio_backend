@@ -83,7 +83,7 @@ const putAlumnoGrado = async(req, res) => {
         const alumnogradoActualizado = await Alumnogrado.findByIdAndUpdate(id, req.body);
         res.json({
             ok: true,
-            msg: 'El alumno grado fue creado con exito'
+            msg: 'El alumno grado actualizado exito'
         })
     } catch (error) {
         console.log(error);
