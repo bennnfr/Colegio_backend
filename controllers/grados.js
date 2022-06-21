@@ -51,6 +51,7 @@ const postGrado = async(req, res) => {
     await grado.save();
     res.json({
         ok: true,
+        msg: 'Grado creado correctamente',
         grado
     })
 }
@@ -73,7 +74,8 @@ const putGrado = async(req, res) => {
 
         const gradoActualizado = await Grado.findByIdAndUpdate(id, req.body);
         res.json({
-            ok: true
+            ok: true,
+            msg: 'Grado actualizado correctamente'
         })
     } catch (error) {
         console.log(error);
