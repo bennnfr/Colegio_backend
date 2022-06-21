@@ -13,7 +13,14 @@ const getProfesores = async(req, res) => {
 }
 
 const getProfesor = async(req, res) => {
-    const profesor = await Profesor.findById(req.params.id);
+    const id = req.params.id
+    if (id.toString().length !== 24) {
+        return res.json({
+            ok: false,
+            msg: 'El id no es valido',
+        })
+    }
+    const profesor = await Profesor.findById(id);
     res.json({
         profesor
     })
@@ -33,6 +40,7 @@ const postProfesor = async(req, res) => {
     await profesor.save();
     res.json({
         ok: true,
+        msg: 'Profesor creado exitosamente',
         profesor
     })
 }
@@ -40,16 +48,24 @@ const postProfesor = async(req, res) => {
 const putProfesor = async(req, res) => {
     const id = req.params.id;
     try {
+        if (id.toString().length !== 24) {
+            return res.json({
+                ok: false,
+                msg: 'El id no es valido',
+            })
+        }
         const profesor = await Profesor.findById(id);
         if (!profesor) {
-            return res.status(404).json({
-                mensaje: 'Profesor no encontrado'
+            return res.json({
+                ok: false,
+                msg: 'Profesor no encontrado',
             })
         }
 
         const profesorActualizado = await Profesor.findByIdAndUpdate(id, req.body);
         res.json({
-            ok: true
+            ok: true,
+            msg: 'Profesor actualizado exitosamente'
         })
     } catch (error) {
         console.log(error);
