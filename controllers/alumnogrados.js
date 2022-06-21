@@ -18,7 +18,7 @@ const getAlumnosGrados = async(req, res) => {
         }
         if (alu === null) {
             alumnosgrados[prop].NombreAlumno = 'Alumno no asignado'
-            alumnosgrados[prop].GradoId = 'Id Alumno no asignado'
+            alumnosgrados[prop].AlumnoId = 'Id Alumno no asignado'
         } else {
             alumnosgrados[prop].NombreAlumno = alu.Nombre
         }
