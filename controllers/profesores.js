@@ -1,4 +1,5 @@
 const Profesor = require('../models/profesor')
+const Grados = require('../models/grados')
 const { validationResult } = require('express-validator')
 
 
@@ -61,17 +62,37 @@ const delProfesor = async(req, res) => {
     try {
         const profesor = await Profesor.findById(id);
         if (!profesor) {
-            return res.status(404).json({
-                mensaje: 'Profesor no encontrado'
+            return res.json({
+                ok: false,
+                msg: 'Profesor no encontrado',
             })
         }
 
-        const profesorActualizado = await Profesor.findByIdAndDelete(id);
-        res.json({
-            ok: true,
-            msg: 'Profesor borrado',
-            res: profesorActualizado
-        })
+        const grad = await Grados.find();
+        if (!grad) {
+            const profesorActualizado = await Profesor.findByIdAndDelete(id);
+            return res.json({
+                ok: true,
+                msg: 'Profesor borrado',
+                res: profesorActualizado
+            })
+        } else {
+            for (const prop in grad) {
+                if (grad[prop].ProfesorId === id) {
+                    return res.json({
+                        ok: false,
+                        msg: 'No se puede borrar el profesor porque pertenece a un grado, elimine el grado primero',
+                    })
+                }
+            }
+            const profesorActualizado = await Profesor.findByIdAndDelete(id);
+            res.json({
+                ok: true,
+                msg: 'Profesor borrado',
+                res: profesorActualizado
+            })
+        }
+
     } catch (error) {
         console.log(error);
     }
