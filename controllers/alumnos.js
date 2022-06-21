@@ -101,7 +101,7 @@ const delAlumno = async(req, res) => {
                 }
             }
             const alumnoActualizado = await Alumno.findByIdAndDelete(id);
-            res.json({
+            return res.json({
                 ok: true,
                 msg: 'Alumno borrado',
                 res: alumnoActualizado

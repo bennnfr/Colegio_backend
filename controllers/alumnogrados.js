@@ -109,7 +109,7 @@ const delAlumnoGrado = async(req, res) => {
         }
 
         const alumnogradoActualizado = await Alumnogrado.findByIdAndDelete(id);
-        res.json({
+        return res.json({
             ok: true,
             msg: 'Alumnogrado borrado',
             res: alumnogradoActualizado

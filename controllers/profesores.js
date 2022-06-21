@@ -102,7 +102,7 @@ const delProfesor = async(req, res) => {
                 }
             }
             const profesorActualizado = await Profesor.findByIdAndDelete(id);
-            res.json({
+            return res.json({
                 ok: true,
                 msg: 'Profesor borrado',
                 res: profesorActualizado
