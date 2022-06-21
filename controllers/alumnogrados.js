@@ -3,7 +3,7 @@ const Grado = require('../models/grados')
 const Alumno = require('../models/alumno')
 const { validationResult } = require('express-validator')
 
-
+//
 
 const getAlumnosGrados = async(req, res) => {
     const alumnosgrados = await Alumnogrado.find();
