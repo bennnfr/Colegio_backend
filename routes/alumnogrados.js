@@ -8,7 +8,7 @@ router.get('/', getAlumnosGrados);
 router.post('/', [
 
 ], postAlumnoGrado);
-//ojo
+
 router.get('/:id', getAlumnoGrado);
 router.put('/:id', putAlumnoGrado);
 router.delete('/:id', delAlumnoGrado);
